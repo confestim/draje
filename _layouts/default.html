@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title }}</title>
+  
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- favicon -->
+  <link rel="icon" href="/assets/img/logo.png" type="image/x-icon" />
+  {% if site.mathjax %}
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      },
+      startup: {
+        ready() {
+          MathJax.startup.defaultReady();
+          // Apply Dracula styling after MathJax loads
+          const style = document.createElement('style');
+          style.textContent = `
+            /* Subtle Dracula MathJax Styling */
+            mjx-container {
+              color: var(--dracula-fg) !important;
+            }
+            
+            mjx-container[display="true"] {
+              background: var(--dracula-current);
+              border: 1px solid var(--dracula-selection);
+              border-radius: 6px;
+              padding: 1rem 1.5rem;
+              margin: 1.5rem 0;
+              overflow-x: auto;
+            }
+            
+            mjx-math {
+              color: var(--dracula-fg) !important;
+            }
+            
+            /* Subtle color variations - more muted */
+            mjx-mi {
+              color: var(--dracula-fg) !important;
+            }
+            
+            mjx-mn {
+              color: var(--dracula-comment) !important;
+            }
+            
+            mjx-mo {
+              color: var(--dracula-fg) !important;
+              opacity: 0.8;
+            }
+            
+            mjx-mtext {
+              color: var(--dracula-fg) !important;
+            }
+            
+            /* Very subtle accent on key elements */
+            mjx-mfrac > mjx-frac > mjx-num,
+            mjx-mfrac > mjx-frac > mjx-den {
+              color: var(--dracula-fg) !important;
+            }
+            
+            mjx-msqrt mjx-surd {
+              color: var(--dracula-purple) !important;
+              opacity: 0.7;
+            }
+            
+            /* Light mode adjustments */
+            :root[data-theme="light"] mjx-container[display="true"] {
+              background: var(--dracula-current);
+              border-color: var(--dracula-selection);
+            }
+            
+            /* Mobile responsive */
+            @media (max-width: 768px) {
+              mjx-container[display="true"] {
+                padding: 0.75rem 1rem;
+                margin: 1rem 0;
+                font-size: 0.9em;
+              }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      }
+    };
+  </script>
+  {% endif %}
+</head>
+<body>
+  {{ content }}
+  <!-- Theme toggle script -->
+  <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
+  <!-- GitHub-style callouts script -->
+  <script src="{{ '/assets/js/callouts.js' | relative_url }}"></script>
+</body>
+</html>

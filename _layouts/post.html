@@ -1,0 +1,65 @@
+---
+layout: default
+---
+
+
+<link rel="stylesheet" href="{{ '/assets/css/pages/post.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/highlight.css' | relative_url }}">
+
+<main class="post-main">
+    {% include page-header.html back_url="/blog/" back_text="../blog" %}
+
+    <div class="post-container">
+        <div class="post-content-wrapper font-mono">
+            <div class="post-title-section">./{{ page.title | slugify }}</div>
+            
+            {% if page.hero_image %}
+            <div class="post-section">
+                <span class="section-icon">├─</span>
+                <div class="section-content">
+                    <h2 class="section-title">Hero Image</h2>
+                    <div class="section-text">
+                        <img src="{{ page.hero_image }}" alt="{{ page.title }}" class="hero-image" />
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="post-section">
+                <span class="section-icon">├─</span>
+                <div class="section-content">
+                    <h2 class="section-title">Metadata</h2>
+                    <div class="section-text">
+                        <span>{{ page.date | date: "%B %d, %Y" }}</span>
+                        {% if site.reading_time %}
+                            {% assign words = content | number_of_words %}
+                            {% assign reading_time = words | divided_by: site.words_per_minute %}
+                            {% if reading_time == 0 %}
+                                {% assign reading_time = 1 %}
+                            {% endif %}
+                            <span class="metadata-separator">•</span>
+                            <span>{{ reading_time }} min read</span>
+                        {% endif %}
+                        {% if page.tags.size > 0 %}
+                            <span class="metadata-separator">•</span>
+                            {% for tag in page.tags %}
+                                <span class="metadata-tag">{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-section content-section">
+                <span class="section-icon">└─</span>
+                <div class="section-content">
+                    <h2 class="section-title">Content</h2>
+                </div>
+            </div>
+            
+            <div class="post-content-body prose prose-invert font-sans">
+                {{ content }}
+            </div>
+        </div>
+    </div>
+</main>

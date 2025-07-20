@@ -1,0 +1,372 @@
+---
+---
+
+/* Local font definitions */
+@font-face {
+  font-family: 'Fira Code';
+  src: url('/assets/fonts/FiraCode-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('/assets/fonts/FiraSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+
+/* Dracula Theme Variables */
+:root {
+  --dracula-bg: #1e1f29;
+  --dracula-current: #44475a;
+  --dracula-selection: #44475a;
+  --dracula-fg: #f8f8f2;
+  --dracula-comment: #6272a4;
+  --dracula-cyan: #8be9fd;
+  --dracula-green: #50fa7b;
+  --dracula-orange: #ffb86c;
+  --dracula-pink: #ff79c6;
+  --dracula-purple: #bd93f9;
+  --dracula-red: #ff5555;
+  --dracula-yellow: #f1fa8c;
+  --gray-100: #f3f4f6;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: var(--dracula-bg);
+  color: var(--dracula-fg);
+  min-height: 100vh;
+  width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Typography */
+.fira-code {
+  font-family: 'Fira Code', monospace;
+  font-feature-settings: 'liga' 1, 'calt' 1;
+}
+
+.font-mono {
+  font-family: 'Fira Code', monospace;
+}
+
+.font-sans {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+/* Common link styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Common component styles */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--gray-400);
+  transition: color 0.15s ease-in-out;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.back-link:hover {
+  color: var(--dracula-purple);
+}
+
+.back-link span {
+  margin-right: 0.5rem;
+}
+
+/* Section styles used in about and post pages */
+.section-icon {
+  color: var(--gray-500);
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.section-content {
+  flex: 1;
+}
+
+.section-title {
+  color: var(--dracula-purple);
+  font-weight: 500;
+}
+
+.section-text {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  margin-top: 0.25rem;
+}
+
+/* Prose styles for content */
+.prose {
+  color: var(--dracula-fg);
+}
+
+.prose-invert {
+  --tw-prose-body: var(--dracula-fg);
+  --tw-prose-headings: var(--dracula-fg);
+}
+
+/* Shared page header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: none;
+  border: 2px solid var(--dracula-purple);
+  color: var(--dracula-purple);
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.theme-toggle:hover {
+  background-color: var(--dracula-purple);
+  color: var(--dracula-bg);
+  transform: scale(1.05);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+/* Home page theme toggle positioning */
+.home-theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+/* Light mode variables */
+:root[data-theme="light"] {
+  --dracula-bg: #f8f9fa;
+  --dracula-current: #e9ecef;
+  --dracula-selection: #dee2e6;
+  --dracula-fg: #212529;
+  --dracula-comment: #6c757d;
+  --dracula-cyan: #0066cc;
+  --dracula-green: #28a745;
+  --dracula-orange: #fd7e14;
+  --dracula-pink: #e83e8c;
+  --dracula-purple: #6f42c1;
+  --dracula-red: #dc3545;
+  --dracula-yellow: #ffc107;
+  --gray-100: #212529;
+  --gray-300: #495057;
+  --gray-400: #6c757d;
+  --gray-500: #adb5bd;
+  --gray-600: #ced4da;
+}
+
+/* Light mode theme toggle styling */
+:root[data-theme="light"] .theme-toggle {
+  border-color: var(--dracula-purple);
+  color: var(--dracula-purple);
+}
+
+:root[data-theme="light"] .theme-toggle:hover {
+  background-color: var(--dracula-purple);
+  color: var(--dracula-bg);
+}
+
+/* Light mode code block styling */
+:root[data-theme="light"] .highlight {
+  background-color: #f8f9fa !important;
+  border: 1px solid #dee2e6;
+}
+
+:root[data-theme="light"] .highlight pre {
+  color: var(--dracula-fg) !important;
+}
+
+:root[data-theme="light"] code:not(.highlight code) {
+  background-color: var(--dracula-current) !important;
+  color: var(--dracula-purple) !important;
+}
+
+/* Light mode prose styling */
+:root[data-theme="light"] .prose blockquote {
+  background: var(--dracula-current);
+  border-left-color: var(--dracula-purple);
+}
+
+/* Light mode image filters */
+:root[data-theme="light"] .hero-image {
+  filter: none;
+}
+
+/* GitHub-like Callouts */
+.prose blockquote[data-callout] {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid;
+  font-style: normal;
+  position: relative;
+  background: var(--dracula-current);
+}
+
+.prose blockquote[data-callout]::before {
+  content: attr(data-callout-icon);
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+
+.prose blockquote[data-callout] p:first-child {
+  margin-left: 2rem;
+  margin-top: 0;
+  font-weight: 600;
+}
+
+.prose blockquote[data-callout] p:not(:first-child) {
+  margin-left: 2rem;
+}
+
+/* Note callout - blue */
+.prose blockquote[data-callout="note"] {
+  border-left-color: var(--dracula-cyan);
+  background: rgba(139, 233, 253, 0.1);
+}
+
+.prose blockquote[data-callout="note"]::before {
+  color: var(--dracula-cyan);
+  content: "//";
+}
+
+/* Warning callout - yellow */
+.prose blockquote[data-callout="warning"] {
+  border-left-color: var(--dracula-yellow);
+  background: rgba(241, 250, 140, 0.1);
+}
+
+.prose blockquote[data-callout="warning"]::before {
+  color: var(--dracula-yellow);
+  content: "!";
+}
+
+/* Important callout - purple */
+.prose blockquote[data-callout="important"] {
+  border-left-color: var(--dracula-purple);
+  background: rgba(189, 147, 249, 0.1);
+}
+
+.prose blockquote[data-callout="important"]::before {
+  color: var(--dracula-purple);
+  content: "!!";
+}
+
+/* Tip callout - green */
+.prose blockquote[data-callout="tip"] {
+  border-left-color: var(--dracula-green);
+  background: rgba(80, 250, 123, 0.1);
+}
+
+.prose blockquote[data-callout="tip"]::before {
+  color: var(--dracula-green);
+  content: "→";
+}
+
+/* Caution callout - orange */
+.prose blockquote[data-callout="caution"] {
+  border-left-color: var(--dracula-orange);
+  background: rgba(255, 184, 108, 0.1);
+}
+
+.prose blockquote[data-callout="caution"]::before {
+  color: var(--dracula-orange);
+  content: "<!>";
+}
+
+/* Light mode callout styling for better contrast */
+:root[data-theme="light"] .prose blockquote[data-callout="note"]::before {
+  color: #0066cc;
+}
+
+:root[data-theme="light"] .prose blockquote[data-callout="warning"]::before {
+  color: #d4a000;
+}
+
+:root[data-theme="light"] .prose blockquote[data-callout="important"]::before {
+  color: #6f42c1;
+}
+
+:root[data-theme="light"] .prose blockquote[data-callout="tip"]::before {
+  color: #28a745;
+}
+
+:root[data-theme="light"] .prose blockquote[data-callout="caution"]::before {
+  color: #fd1414;
+}
+
+:root[data-theme="light"] .prose blockquote[data-callout="note"] {
+  border-left-color: #0066cc;
+}
+
+:root[data-theme="light"] .prose blockquote[data-callout="warning"] {
+  border-left-color: #d4a000;
+}
+
+:root[data-theme="light"] .prose blockquote[data-callout="important"] {
+  border-left-color: #6f42c1;
+}
+
+:root[data-theme="light"] .prose blockquote[data-callout="tip"] {
+  border-left-color: #28a745;
+}
+
+:root[data-theme="light"] .prose blockquote[data-callout="caution"] {
+  border-left-color: #fd1414;
+}

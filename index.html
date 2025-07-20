@@ -1,0 +1,42 @@
+---
+layout: default
+title: Home
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/pages/index.css' | relative_url }}">
+{% include home-theme-toggle.html %}
+<div class="ligature-bg"></div>
+
+<div class="homepage-container">
+  <div class="homepage-content">
+    <img src="/assets/img/logo.png" alt="Logo" class="homepage-logo" />
+
+    <h1 class="homepage-title fira-code">
+      {{ site.title }}
+    </h1>
+
+    <div class="homepage-nav fira-code">
+      <div class="nav-header">./</div>
+      <div class="nav-item">
+        <span class="nav-icon">├── </span>
+        <a href="/blog" class="nav-link">Blog</a>
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon">└── </span>
+        <a href="/about" class="nav-link">About</a>
+      </div>
+    </div>
+
+    <div class="homepage-social">
+        <a href="https://github.com/{{ site.github_user }}" class="social-link">
+            <i class="fab fa-github social-icon"></i>
+        </a>
+        <a href="http://linkedin.com/in/{{ site.linkedin_user }}" class="social-link">
+            <i class="fab fa-linkedin social-icon"></i>
+        </a>
+        <a href="https://youtube.com/channel/{{ site.youtube_user }}" class="social-link">
+            <i class="fab fa-youtube social-icon"></i>
+        </a>
+    </div>
+  </div>
+</div>

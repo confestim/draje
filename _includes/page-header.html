@@ -1,0 +1,13 @@
+<!-- Shared page header with back button and theme toggle -->
+<div class="page-header">
+    <div class="header-left">
+        <a href="{{ include.back_url | default: '/' }}" class="back-link fira-code">
+           <span>←</span> {{ include.back_text | default: '../' }}
+        </a>
+    </div>
+    <div class="header-right">
+        <button id="theme-toggle" class="theme-toggle fira-code" title="Toggle light/dark mode">
+            <span class="theme-icon" id="theme-icon">☀</span>
+        </button>
+    </div>
+</div>

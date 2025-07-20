@@ -1,0 +1,79 @@
+---
+layout: default
+title: About
+permalink: /about/
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/pages/about.css' | relative_url }}">
+
+<main class="about-main">
+    {% include page-header.html back_url="/" back_text="../" %}
+
+    <div class="about-container">
+        <div class="about-content font-mono">
+            <div class="about-title">./about</div>
+            
+            <div class="about-section">
+                <span class="section-icon">├─</span>
+                <div class="section-content">
+                    <h2 class="section-title">Personal Info</h2>
+                    <div class="section-text">
+                        Hi! I'm Boyan. I'm a 21-year-old Bulgarian studying Computer Science at the University of Groningen.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <span class="section-icon">├─</span>
+                <div class="section-content">
+                    <h2 class="section-title">Interests</h2>
+                    <div class="section-text">
+                        I dabble with electronics and amateur radio as a hobby. I'm also a big fan of open-source software and hardware.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <span class="section-icon">├─</span>
+                <div class="section-content">
+                    <h2 class="section-title">Recent Activity</h2>
+                    <div class="section-text">
+                        <img 
+                            src="https://github-readme-stats.vercel.app/api/wakatime?username=boyan&api_domain=track.confest.im&bg_color=1e1f29&title_color=bd93f9&icon_color=50fa7b&text_color=f8f8f2&custom_title=What%20I%20have%20been%20up%20to%20lately&layout=compact" 
+                            alt="Wakatime stats"
+                            class="wakatime-stats"
+                        />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <span class="section-icon">├─</span>
+                <div class="section-content">
+                    <h2 class="section-title">Currently in the works</h2>
+                    <div class="section-text working-items">
+                        {% for item in site.data.working %}
+                        <div class="working-item">
+                            <span class="working-name">{{ item.name }}</span>
+                            <span class="working-details font-mono">
+                                [P{{ item.priority }}] {{ item.eta }}
+                            </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-section">
+                <span class="section-icon">└─</span>
+                <div class="section-content">
+                    <h2 class="section-title">Contact</h2>
+                    <div class="section-text">
+                        Curious to learn more? Check out my <a href="/blog" class="contact-link">blog</a> or 
+                        <a href="mailto:con@confest.im" class="contact-link">send me an email</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

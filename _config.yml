@@ -1,0 +1,38 @@
+title:              John Doe
+description:        "Personal Blog"
+reading_time:       true
+words_per_minute:   100
+logo:               'assets/img/logo.png'
+locale:             en_US
+url:                https://example.com
+
+# Jekyll
+permalink:          /posts/:title/
+markdown:           kramdown
+highlighter:        rouge
+kramdown:
+  auto_ids:         true
+  footnote_nr:      1
+  entity_output:    as_char
+  toc_levels:       1..6
+  enable_coderay:   false
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+      
+mathjax:            true
+sass:
+  sass_dir:         _sass
+  style:            compressed
+
+github_user: johndoe
+youtube_user: UCxxxxxxxxxxxxxxxxxx
+linkedin_user: john-doe
+
+include:
+  - _pages
+  - _posts
+  - assets
+
+exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]

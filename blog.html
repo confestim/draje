@@ -1,0 +1,160 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/pages/blog.css' | relative_url }}">
+<script src="{{ '/assets/js/search.js' | relative_url }}"></script>
+
+<main class="blog-main">
+    {% include page-header.html back_url="/" back_text="../" %}
+    
+    <div class="blog-header">
+        <div class="blog-search-controls">
+            <span class="search-arrow fira-code">====></span>
+            <div class="search-container">
+                <div 
+                    id="search-bar-custom" 
+                    contenteditable="true" 
+                    class="custom-search-input"
+                    data-placeholder="Search..."
+                ></div>
+                <input type="hidden" id="search-bar" />
+            </div>
+            
+            <div class="filter-buttons">
+                <button 
+                    class="filter-btn"
+                    data-filter="all"
+                    aria-pressed="true"
+                    title="All posts"
+                >
+                    <i class="fas fa-list"></i>
+                </button>
+
+                {% assign has_project = false %}
+                {% for post in site.posts %}
+                    {% if post.tags contains 'project' %}
+                        {% assign has_project = true %}
+                        {% break %}
+                    {% endif %}
+                {% endfor %}
+                {% if has_project %}
+                    <button 
+                        class="filter-btn"
+                        data-filter="project"
+                        aria-pressed="false"
+                        title="Projects"
+                    >
+                        <i class="fas fa-code"></i>
+                    </button>
+                {% endif %}
+
+                {% assign has_post = false %}
+                {% for post in site.posts %}
+                    {% if post.tags contains 'post' %}
+                        {% assign has_post = true %}
+                        {% break %}
+                    {% endif %}
+                {% endfor %}
+                {% if has_post %}
+                    <button 
+                        class="filter-btn"
+                        data-filter="post"
+                        aria-pressed="false"
+                        title="Posts"
+                    >
+                        <i class="fas fa-file-alt"></i>
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-container">
+        <div class="blog-content fira-code">
+            <div class="blog-title">./blog</div>
+                {% assign post_count = 0 %}
+                {% for post in site.posts %}
+                {% unless post.draft or post.tags contains 'draft' %}
+                {% assign post_count = post_count | plus: 1 %}
+                {% endunless %}
+                {% endfor %}
+                
+                {% assign current_index = 0 %}
+                {% for post in site.posts %}
+                {% unless post.draft or post.tags contains 'draft' %}
+                {% assign current_index = current_index | plus: 1 %}
+                {% assign is_last = false %}
+                {% if current_index == post_count %}
+                    {% assign is_last = true %}
+                {% endif %}
+                
+                <div class="post-card" data-tags="{{ post.tags | join: ' ' }}">
+                    
+                    <div class="post-item">
+                        <span class="post-icon">
+                            {% if is_last %}└── {% else %}├── {% endif %}
+                        </span>
+                        <div class="post-content">
+                            <a href="{{ post.url | relative_url }}" class="post-link group">
+                                <h2 class="post-title">
+                                    {{ post.title }}
+                                </h2>
+                                {% if post.excerpt %}
+                                <div class="post-excerpt line-clamp-2">
+                                    {{ post.excerpt | strip_html | truncatewords: 25 }}
+                                </div>
+                                {% endif %}
+                                <div class="post-meta">
+                                    <span>{{ post.date | date: "%Y-%m-%d" }}</span>
+                                    {% if post.tags.size > 0 %}
+                                        <span>|</span>
+                                        {% for tag in post.tags %}
+                                            <span class="post-tag">[{{ tag }}]</span>{% unless forloop.last %} {% endunless %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endunless %}
+                {% endfor %}
+        </div>
+    </div>
+</main>
+
+<script src="{{ '/assets/js/filter-posts.js' | relative_url }}"></script>
+
+<script>
+// Make the custom input work with the existing search functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const customInput = document.getElementById('search-bar-custom');
+    const hiddenInput = document.getElementById('search-bar');
+    
+    if (customInput && hiddenInput) {
+        // Update hidden input when custom input changes
+        customInput.addEventListener('input', function() {
+            hiddenInput.value = this.textContent;
+            // Trigger input event on hidden input for search functionality
+            hiddenInput.dispatchEvent(new Event('input', { bubbles: true }));
+        });
+        
+        // Handle paste events to insert plain text only
+        customInput.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const text = (e.originalEvent || e).clipboardData.getData('text/plain');
+            document.execCommand('insertText', false, text);
+        });
+        
+        // Prevent Enter key from creating new lines
+        customInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+            }
+        });
+    }
+});
+</script>
