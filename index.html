@@ -9,7 +9,7 @@ title: Home
 
 <div class="homepage-container">
   <div class="homepage-content">
-    <img src="/assets/img/logo.png" alt="Logo" class="homepage-logo" />
+    <img src="{{ '/assets/img/logo.png' | relative_url }}" alt="Logo" class="homepage-logo" />
 
     <h1 class="homepage-title fira-code">
       {{ site.title }}
@@ -19,11 +19,11 @@ title: Home
       <div class="nav-header">./</div>
       <div class="nav-item">
         <span class="nav-icon">├── </span>
-        <a href="/blog" class="nav-link">Blog</a>
+        <a href="{{ '/blog' | relative_url }}" class="nav-link">Blog</a>
       </div>
       <div class="nav-item">
         <span class="nav-icon">└── </span>
-        <a href="/about" class="nav-link">About</a>
+        <a href="{{ '/about' | relative_url }}" class="nav-link">About</a>
       </div>
     </div>
 
