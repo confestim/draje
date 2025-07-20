@@ -4,7 +4,7 @@ reading_time:       true
 words_per_minute:   100
 logo:               'assets/img/logo.png'
 locale:             en_US
-url:                https://example.com
+url:                https://confestim.github.io/draje/
 
 # Jekyll
 permalink:          /posts/:title/
@@ -20,7 +20,7 @@ kramdown:
   syntax_highlighter_opts:
     block:
       line_numbers: false
-      
+
 mathjax:            true
 sass:
   sass_dir:         _sass
