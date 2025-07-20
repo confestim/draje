@@ -4,7 +4,7 @@ title: "Theme Features Demo"
 date: 1970-01-01
 tags: [demo, features, theme]
 excerpt: "A comprehensive showcase of all the features available in this Jekyll theme"
-hero_image: "/assets/img/heroes/example_post.png"
+hero_image: "assets/img/heroes/example_post.png"
 ---
 
 # Theme Features Demo
